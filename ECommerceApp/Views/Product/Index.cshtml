@@ -5,14 +5,12 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
+			<form asp-action="Create" method="post" class="form-inline mb-3">
+               <input type="text" class="form-control mb-3" placeholder="Name" asp.for="Name" name="Name">
+               <input type="text" class="form-control mb-3" placeholder="Description" asp.for="Description" name="Description">
+               <input type="number" class="form-control mb-3" placeholder="Price" asp.for="Price" name="Price">
+			   <button type="submit" class="btn btn-outline-success my-2 my-sm-0">Create New Product</button>
+                </form>
         </div>
     </div>
 </div>
