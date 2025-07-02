@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using ECommerceApp.Entities;
 using ECommerceApp.Interfaces;
 using ECommerceApp.Models;
@@ -48,6 +49,25 @@ namespace ECommerceApp.Test
          )), Times.Once);
       }
 
+      [Test]
+      public void AddProduct_EmptyFields_ReturnsThreeErrorMessages()
+      {
+         // Arrange
+         var emptyProduct = new CreateProductViewModel
+         {
+            Name = null,
+            Description = null,
+            Price = null
+         };
 
+         // Act
+         var context = new ValidationContext(emptyProduct, serviceProvider: null, items: null);
+         var results = new List<ValidationResult>();
+         bool isValid = Validator.TryValidateObject(emptyProduct, context, results, validateAllProperties: true);
+
+         // Assert
+         Assert.False(isValid);
+         Assert.AreEqual(3, results.Count);
+      }
    }
 }
