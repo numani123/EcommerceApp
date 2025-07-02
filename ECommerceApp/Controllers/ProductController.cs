@@ -25,7 +25,7 @@ namespace ECommerceApp.Controllers
       [ValidateAntiForgeryToken]
       public IActionResult Create(CreateProductViewModel model)
       {
-         _ProductService.AddProduct(model);
+         bool isSuccessful = _ProductService.AddProduct(model);
 
          return RedirectToAction("Index", "Product");
       }

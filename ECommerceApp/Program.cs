@@ -17,7 +17,8 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 builder.Services.AddControllersWithViews();
 
 // Dependency Injection
-builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IProductService, ProductService>()
+   .AddScoped<IProductRepository, ProductRepository>();
 
 var app = builder.Build();
 

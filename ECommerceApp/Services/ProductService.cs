@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using ECommerceApp.Data;
 using ECommerceApp.Entities;
 using ECommerceApp.Interfaces;
 using ECommerceApp.Models;
@@ -8,15 +7,14 @@ namespace ECommerceApp.Services
 {
    public class ProductService : IProductService
    {
+      private IProductRepository productRepository;
 
-      private readonly ApplicationDbContext applicationDbContext;
-
-      public ProductService(ApplicationDbContext _context)
+      public ProductService(IProductRepository productRepository)
       {
-         applicationDbContext = _context;
+         this.productRepository = productRepository;
       }
 
-      public void AddProduct(CreateProductViewModel product)
+      public bool AddProduct(CreateProductViewModel product)
       {
          var context = new ValidationContext(product, serviceProvider: null, items: null);
 
@@ -29,7 +27,7 @@ namespace ECommerceApp.Services
             {
                System.Diagnostics.Debug.WriteLine(validationResult.ErrorMessage);
             }
-            return;
+            return false;
          }
 
          Product newProduct = new Product
@@ -39,7 +37,16 @@ namespace ECommerceApp.Services
             Price = product.Price.HasValue ? product.Price.Value : 0
          };
 
-         applicationDbContext.Products.Add(newProduct);
+         try
+         {
+            productRepository.Add(newProduct);
+         }
+         catch (Exception)
+         {
+            return false;
+         }
+
+         return true;
       }
    }
 }

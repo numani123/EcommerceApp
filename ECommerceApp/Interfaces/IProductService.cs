@@ -4,6 +4,6 @@ namespace ECommerceApp.Interfaces
 {
    public interface IProductService
    {
-      void AddProduct(CreateProductViewModel product);
+      bool AddProduct(CreateProductViewModel product);
    }
 }
