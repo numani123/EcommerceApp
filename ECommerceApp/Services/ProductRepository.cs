@@ -16,6 +16,7 @@ namespace ECommerceApp.Services
       public void Add(Product product)
       {
          applicationDbContext.Products.Add(product);
+         applicationDbContext.SaveChanges();
       }
 
       public IList<Product> GetAllProducts()
