@@ -1,0 +1,15 @@
+﻿#registerButton {
+   background-color: #6f42c1; /* Bootstrap's purple */
+   color: #fff;
+   border: none;
+   padding: 0.5rem 1.25rem;
+   border-radius: 0.25rem;
+   font-weight: 500;
+   transition: background 0.2s;
+}
+
+#registerButton:hover,
+#registerButton:focus {
+   background-color: #5936a9; /* A slightly darker purple for hover */
+   color: #fff;
+}
